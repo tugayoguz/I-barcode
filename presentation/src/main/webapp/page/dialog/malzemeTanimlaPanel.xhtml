@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:dmis="http://java.sun.com/jsf/composite/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<b:panel id="editPanel" rendered="#{malzemeManagedBean.editPanel}"
+		title="Malzeme Tanimla">
+		<b:panelGrid columns="2" colSpans="6,6">
+			<b:panel>
+				<dmis:inputText value="#{malzemeManagedBean.malzeme.adi}"
+					labelId="adiLabelId" compId="adiId" labelText="Malzeme Adı"
+					requiredCond="true" />
+				<dmis:inputText value="#{malzemeManagedBean.malzeme.kod}"
+					labelId="koduLabelId" compId="koduId" labelText="Malzeme Kodu"
+					requiredCond="true" />
+				<dmis:inputText value="#{malzemeManagedBean.malzeme.renk}"
+					labelId="renkLabelId" compId="renkId" labelText="Malzeme Rengi"
+					requiredCond="true" />
+
+				<dmis:inputTextWithBarcode
+					value="#{malzemeManagedBean.malzeme.firmaBarcode}"
+					labelId="firmaBarcodeLabelId" compId="firmaBarcodeId"
+					labelText="Firma Barcode" requiredCond="false" />
+
+
+
+			</b:panel>
+			<b:panel>
+
+				<dmis:selectOneMenu
+					selectValue="#{malzemeManagedBean.malzeme.malzemeGrubu}"
+					listValue="#{malzemeManagedBean.malzemeGrubuList}"
+					compId="malzemeGrubuId" requiredCond="true"
+					varLabel="#{row.kodu} (#{row.adi})"
+					converterId="#{malzemeGrubuConverter}" labelText="Malzeme Grubu"
+					labelId="malzemeGrubuLabelId" />
+				<dmis:selectOneMenu
+					selectValue="#{malzemeManagedBean.malzeme.bedenGrup}"
+					listValue="#{malzemeManagedBean.bedenGrupList}"
+					compId="bedenGrubuId" requiredCond="true"
+					listener="#{malzemeManagedBean.handleChange}"
+					varLabel="#{row.kodu} (#{row.adi})"
+					updateComp="malzemeForm:bedenOutput"
+					converterId="#{bedenGrupConverter}" labelText="Beden Grubu"
+					labelId="bedenGrubuLabelId" />
+
+				<p:outputPanel id="bedenOutput">
+					<dmis:selectOneMenu
+						selectValue="#{malzemeManagedBean.malzeme.beden}"
+						listValue="#{malzemeManagedBean.bedenList}" compId="bedenId"
+						requiredCond="true" varLabel="#{row.kod} (#{row.adi})"
+						converterId="#{bedenConverter}" labelText="Beden"
+						labelId="bedenLabelId" />
+				</p:outputPanel>
+
+
+			</b:panel>
+		</b:panelGrid>
+		<b:panel style="text-align:center;">
+			<p:commandButton value="Kaydet" action="#{malzemeManagedBean.kaydet}" style="background: green;color: white;"
+				update="malzemeForm" />
+			<p:commandButton value="İptal" action="#{malzemeManagedBean.iptal}" style="background: red;color: white;"
+				update="malzemeForm" immediate="true" />
+
+		</b:panel>
+	</b:panel>
+</ui:composition>

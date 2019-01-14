@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:dmis="http://java.sun.com/jsf/composite/component">
+
+<composite:interface>
+
+	<composite:attribute name="labelText" required="true"
+		type="java.lang.String" />
+	<composite:attribute name="value" required="true" />
+	<composite:attribute name="compId" required="true"
+		type="java.lang.String" />
+	<composite:attribute name="labelId" required="true"
+		type="java.lang.String" />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<b:panelGrid colSpans="4,8"
+		style="margin-top:5px; margin-bottom:5px !important; width:100% !important;">
+		<p:outputLabel for="#{cc.attrs.compId}" id="#{cc.attrs.labelId}"
+			value="#{cc.attrs.labelText} : " />
+		<b:panelGrid colSpans="12">
+			<p:barcode id="#{cc.attrs.compId}" type="code128" value="#{cc.attrs.value}"/>
+		</b:panelGrid>
+
+	</b:panelGrid>
+
+</composite:implementation>
+
+</html>

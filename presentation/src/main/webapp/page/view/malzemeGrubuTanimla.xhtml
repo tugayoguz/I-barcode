@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:dmis="http://java.sun.com/jsf/composite/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/page/template/ibarcode-template.xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="content">
+		<h:form id="malzemeGrubuForm">
+
+			<ui:include src="../dialog/malzemeGrubuTanimlaPanel.xhtml" />
+			<b:panel id="button" rendered="#{!malzemeGrubuManagedBean.editPanel}">
+				<p:row>
+					<p:column>
+						<p:commandButton id="ekleButtonId"
+							action="#{malzemeGrubuManagedBean.ekle}" value="Ekle"
+							update="malzemeGrubuForm" />
+					</p:column>
+					<p:column>
+						<p:commandButton id="duzenleButtonId" disabled="#{malzemeGrubuManagedBean.selectedMalzemeGrubu == null}"
+							action="#{malzemeGrubuManagedBean.guncelle}" value="Düzenle"
+							update="malzemeGrubuForm" />
+					</p:column>
+					<p:column>
+						<p:commandButton id="silButtonId" disabled="#{malzemeGrubuManagedBean.selectedMalzemeGrubu == null}"
+							action="#{malzemeGrubuManagedBean.malzemeSil}" value="Sil"
+							update="malzemeGrubuForm" />
+					</p:column>
+				</p:row>
+			</b:panel>
+
+			<b:panelGrid id="dataTableId" layout="grid" columns="2"
+				colSpans="9,3" rendered="#{!malzemeGrubuManagedBean.editPanel}"
+				columnClasses="ui-grid-col-9, ui-grid-col-3">
+				<b:panel>
+					<p:dataTable id="malzemeGrubu"
+						value="#{malzemeGrubuManagedBean.malzemeGrubuList}"
+						var="malzemeGrubu" rowKey="#{malzemeGrubu.id}"
+						emptyMessage="Malzeme Grubu Bulunamadı" selectionMode="single"
+						selection="#{malzemeGrubuManagedBean.selectedMalzemeGrubu}"
+						resizableColumns="true" rowsPerPageTemplate="5,10,15"
+						paginator="true" rows="10" paginatorPosition="bottom"
+						paginatorTemplate="{RowsPerPageDropdown} {PageLinks} {CurrentPageReport}"
+						currentPageReportTemplate="Toplam {totalRecords} kayıttan {startRecord} ile {endRecord} arası görüntüleniyor.">
+						<f:facet name="header">
+							<h:outputText value="Malzeme Grubu Listesi" />
+						</f:facet>
+						<p:ajax event="rowSelect"
+							update="malzemeGrubuForm:button malzemeGrubuForm:bilgiId" />
+						<p:ajax event="rowUnselect"
+							update="malzemeGrubuForm:button malzemeGrubuForm:bilgiId" />
+						<p:column headerText="Malzeme Grubu Adi"
+							sortBy="#{malzemeGrubu.adi}" filterBy="#{malzemeGrubu.adi}"
+							width="25%">
+							<h:outputText value="#{malzemeGrubu.adi}" />
+						</p:column>
+						<p:column headerText="Malzeme Grubu Kodu"
+							sortBy="#{malzemeGrubu.kodu}" filterBy="#{malzemeGrubu.kodu}"
+							width="25%">
+							<h:outputText value="#{malzemeGrubu.kodu}" />
+						</p:column>
+					</p:dataTable>
+				</b:panel>
+				<b:panel id="bilgiId">
+					<f:facet name="header">
+						<h:outputText value="Malzeme Grubu Bilgileri" />
+					</f:facet>
+					<b:panelGrid  columns="1" colSpans="12">
+						<dmis:inputText
+							value="#{malzemeGrubuManagedBean.selectedMalzemeGrubu.adi}"
+							labelId="adiLabelId" compId="adiId" disableInput="true"
+							labelText="Malzeme Grubu Adi" requiredCond="false"
+							compImmediate="false" />
+						<dmis:inputText
+							value="#{malzemeGrubuManagedBean.selectedMalzemeGrubu.kodu}"
+							labelId="koduLabelId" compId="kodId" disableInput="true"
+							labelText="Malzeme Grubu Kodu" requiredCond="false"
+							compImmediate="false" />
+					</b:panelGrid>
+				</b:panel>
+			</b:panelGrid>
+
+		</h:form>
+		
+	</ui:define>
+
+	<ui:define name="page-title">
+		Malzeme Grubu Tanımlama
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:dmis="http://java.sun.com/jsf/composite/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<b:panel id="editPanel" rendered="#{bedenGrubuManagedBean.editPanel}"
+		title="Beden Grubu Tanimla">
+		<b:panelGrid columns="2" colSpans="6,6">
+			<b:panel>
+				<dmis:inputText value="#{bedenGrubuManagedBean.bedenGrup.adi}"
+					labelId="adiLabelId" compId="adiId" labelText="Beden Grubu Adı"
+					requiredCond="true" compImmediate="false" />
+
+			</b:panel>
+			<b:panel>
+				<dmis:inputText value="#{bedenGrubuManagedBean.bedenGrup.kod}"
+					labelId="koduLabelId" compId="koduId" labelText="Beden Grubu Kodu"
+					requiredCond="true" compImmediate="false" />
+			</b:panel>
+		</b:panelGrid>
+		<b:panel style="text-align:center;">
+			<p:commandButton value="Kaydet" style="background: green;color: white;"
+				action="#{bedenGrubuManagedBean.kaydet}" update="bedenGrubuForm"/>
+			<p:commandButton value="İptal" 
+				action="#{bedenGrubuManagedBean.iptal}" update="bedenGrubuForm" style="background: red;color: white;"
+				immediate="true" />
+
+		</b:panel>
+	</b:panel>
+</ui:composition>

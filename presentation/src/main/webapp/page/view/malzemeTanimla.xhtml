@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:dmis="http://java.sun.com/jsf/composite/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/page/template/ibarcode-template.xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="content">
+		<h:form id="malzemeForm">
+			<ui:include src="../dialog/malzemeTanimlaPanel.xhtml" />
+			<b:panel id="button" rendered="#{!malzemeManagedBean.editPanel}">
+				<p:commandButton id="ekleButtonId"
+					action="#{malzemeManagedBean.ekle}" value="Ekle"
+					update="malzemeForm" />
+				<p:commandButton id="duzenleButtonId"
+					disabled="#{malzemeManagedBean.selectedMalzeme == null}"
+					action="#{malzemeManagedBean.guncelle}" value="Düzenle"
+					update="malzemeForm" />
+				<p:commandButton id="silButtonId"
+					disabled="#{malzemeManagedBean.selectedMalzeme == null}"
+					action="#{malzemeManagedBean.malzemeSil}" value="Sil"
+					update="malzemeForm" />
+
+			</b:panel>
+
+			<b:panelGrid id="dataTableId" layout="grid" columns="2"
+				colSpans="8,4" rendered="#{!malzemeManagedBean.editPanel}"
+				columnClasses="ui-grid-col-8, ui-grid-col-4">
+				<b:panel>
+					<p:dataTable id="malzeme" value="#{malzemeManagedBean.malzemeList}"
+						var="malzeme" rowKey="#{malzeme.id}"
+						emptyMessage="Malzeme Bulunamadı" selectionMode="single"
+						selection="#{malzemeManagedBean.selectedMalzeme}"
+						resizableColumns="true" rowsPerPageTemplate="5,10,15"
+						paginator="true" rows="10" paginatorPosition="bottom"
+						paginatorTemplate="{RowsPerPageDropdown} {PageLinks} {CurrentPageReport}"
+						currentPageReportTemplate="Toplam {totalRecords} kayıttan {startRecord} ile {endRecord} arası görüntüleniyor.">
+						<f:facet name="header">
+							<h:outputText value="Malzeme Listesi" />
+						</f:facet>
+						<p:ajax event="rowSelect"
+							update="malzemeForm:button malzemeForm:bilgiId" />
+						<p:ajax event="rowUnselect"
+							update="malzemeForm:button malzemeForm:bilgiId" />
+						<p:column headerText="Malzeme Adi" sortBy="#{malzeme.adi}"
+							filterBy="#{malzeme.adi}" width="25%">
+							<h:outputText value="#{malzeme.adi}" />
+						</p:column>
+						<p:column headerText="Malzeme Kodu" sortBy="#{malzeme.kod}"
+							filterBy="#{malzeme.kod}" width="25%">
+							<h:outputText value="#{malzeme.kod}" />
+						</p:column>
+						<p:column headerText="Malzeme Renk" sortBy="#{malzeme.renk}"
+							filterBy="#{malzeme.renk}" width="25%">
+							<h:outputText value="#{malzeme.renk}" />
+						</p:column>
+						<p:column headerText="Malzeme Beden" sortBy="#{malzeme.beden.kod}"
+							filterBy="#{malzeme.beden.kod}" width="25%">
+							<h:outputText value="#{malzeme.beden.kod}" />
+						</p:column>
+
+					</p:dataTable>
+				</b:panel>
+				<b:panel id="bilgiId">
+					<f:facet name="header">
+						<h:outputText value="Malzeme Bilgileri" />
+					</f:facet>
+					<b:panelGrid columns="1" colSpans="12">
+						<dmis:inputText value="#{malzemeManagedBean.selectedMalzeme.adi}"
+							labelId="adiLabelId" compId="adiId" disableInput="true"
+							labelText="Malzeme Adi" requiredCond="false"
+							compImmediate="false" />
+						<dmis:inputText value="#{malzemeManagedBean.selectedMalzeme.kod}"
+							labelId="koduLabelId" compId="kodId" disableInput="true"
+							labelText="Malzeme Kodu" requiredCond="false"
+							compImmediate="false" />
+						<dmis:inputText value="#{malzemeManagedBean.selectedMalzeme.renk}"
+							labelId="renkLabelId" compId="renkId" disableInput="true"
+							labelText="Malzeme Rengi" requiredCond="false"
+							compImmediate="false" />
+						<dmis:barcode compId="firmaBarcodeId"
+							labelId="firmaBarcodeLabelId"
+							value="#{malzemeManagedBean.selectedMalzeme.firmaBarcode}"
+							labelText="Firma Barkod" />
+						<dmis:barcode compId="barcodeId"
+							labelId="barcodeLabelId"
+							value="#{malzemeManagedBean.selectedMalzeme.barcode}"
+							labelText="Sistem Barkod" />
+						<dmis:inputText value="#{malzemeManagedBean.selectedMalzeme.beden.kod}"
+							labelId="bedenLabelId" compId="bedenId" disableInput="true"
+							labelText="Malzeme Bedeni" requiredCond="false"
+							compImmediate="false" />
+
+
+					</b:panelGrid>
+				</b:panel>
+			</b:panelGrid>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="page-title">
+		Malzeme Tanımlama
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'Entypo';
+	src: url('#{resource["fonts/Entypo.eot"]}?k8e7fz');
+	src: url('#{resource["fonts/Entypo.eot"]}?k8e7fz#iefix')
+		format('embedded-opentype'),
+		url('#{resource["fonts/Entypo.ttf"]}?k8e7fz') format('truetype'),
+		url('#{resource["fonts/Entypo.woff"]}?k8e7fz') format('woff'),
+		url('#{resource["fonts/Entypo.svg"]}?k8e7fz#Entypo') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

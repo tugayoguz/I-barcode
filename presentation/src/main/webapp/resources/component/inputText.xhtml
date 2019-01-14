@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:dmis="http://java.sun.com/jsf/composite/component">
+
+<composite:interface>
+
+	<composite:attribute name="labelText" required="true"
+		type="java.lang.String" />
+	<composite:attribute name="value" required="true" />
+	<composite:attribute name="compId" required="true"
+		type="java.lang.String" />
+	<composite:attribute name="labelId" required="true"
+		type="java.lang.String" />
+	<composite:attribute name="requiredCond" required="false"
+		default="false" type="java.lang.Boolean" />
+	<composite:attribute name="requiredMessage" required="false"
+		default="Bu alan zorunludur!" type="java.lang.String" />
+	<composite:attribute name="compImmediate" required="false"
+		type="java.lang.Boolean" />
+	<composite:attribute name="disableInput" required="false"
+		type="java.lang.Boolean" />
+	<composite:attribute name="listener" method-signature="void listener()"
+		required="false" />
+	<composite:attribute name="updateComp" required="false" />
+</composite:interface>
+
+<composite:implementation>
+
+	<b:panelGrid colSpans="4,8"
+		style="margin-top:5px; margin-bottom:5px !important; width:100% !important;">
+		<p:outputLabel for="#{cc.attrs.compId}" id="#{cc.attrs.labelId}"
+			value="#{cc.attrs.labelText} : " />
+		<b:panelGrid colSpans="12">
+			<p:inputText id="#{cc.attrs.compId}" value="#{cc.attrs.value}"
+				required="#{cc.attrs.requiredCond}"
+				disabled="#{cc.attrs.disableInput}"
+				requiredMessage="#{cc.attrs.requiredMessage}"
+				immediate="#{cc.attrs.compImmediate}" />
+
+			<c:if test="${not empty cc.attrs.updateComp}">
+				<p:ajax listener="#{cc.attrs.listener}"
+					update="#{cc.attrs.updateComp}" process="@this" />
+			</c:if>
+			<p:message for="#{cc.attrs.compId}" />
+
+		</b:panelGrid>
+
+	</b:panelGrid>
+
+</composite:implementation>
+
+</html>

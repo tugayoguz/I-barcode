@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>I-Barcode Harun Tan :)</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <h:outputStylesheet library="css" name="icon-fonts.css"/>
+    <h:outputStylesheet library="css" name="ibarcode.min.css"/>
+    <ui:insert name="head"/>
+</h:head>
+
+<f:view locale="tr_TR">
+<h:body>
+
+<div id="rs-wrapper">
+
+    
+    <ui:include src="menu.xhtml" />
+
+    <!-- BEGIN MAIN CONTENT -->
+    <article class="rs-content-wrapper">
+        <div class="rs-content">
+            <div class="rs-inner">
+
+                <!-- Begin Dashhead -->
+                <div class="rs-dashhead m-b-lg">
+                    <ui:insert name="page-title-complete">
+                    <div class="rs-dashhead-content">
+                        <div class="rs-dashhead-titles">
+
+                            <h3 class="rs-dashhead-title"><ui:insert name="page-title">Default Title</ui:insert></h3>
+
+                            <!-- Begin Toolbar toggle button on mobile -->
+                            <div class="toggle-toolbar-btn">
+                                <span class="fa fa-sort"/>
+                            </div><!-- /.toggle-toolbar-btn -->
+                            <!-- End Toolbar toggle button on mobile -->
+                        </div><!-- /.rs-dashhead-titles -->
+                        <div class="rs-dashhead-toolbar">
+                            <h6 class="rs-dashhead-subtitle text-uppercase"><ui:insert name="page-title-right"/></h6>
+                        </div><!-- /.rs-dashhead-toolbar -->
+                    </div><!-- /.rs-dashhead-content -->
+
+                    <ui:insert name="breadcrumb">
+                    <!-- Begin Breadcrumb -->
+                    <ol class="breadcrumb">
+                        <li><a href="/presentation/page/template/index.xhtml">Anasayfa</a></li>
+                        <li><a href="javascript:void(0);">Library</a></li>
+                        <li class="active">Data</li>
+                    </ol>
+                    <!-- End Breadcrumb -->
+                    </ui:insert>
+
+                    </ui:insert>
+                </div><!-- /.rs-dashhead -->
+                <!-- End Dashhead -->
+
+                <div class="container-fluid">
+                    <ui:insert name="content"/>
+                </div><!-- /.container-fluid -->
+
+            </div><!-- /.rs-inner -->
+        </div><!-- /.rs-content -->
+    </article><!-- /.rs-content-wrapper -->
+    <!-- END MAIN CONTENT -->
+
+
+    <!-- BEGIN FOOTER -->
+    <footer class="rs-footer absolute-footer">
+        <span class="text-muted small">2018 I-Barcode</span>
+    </footer>
+    <!-- END FOOTER -->
+
+
+</div><!-- /#rs-wrapper -->
+
+    <!-- Screen overlay is required -->
+    <div id="rs-screen-overlay"></div>
+
+    <!-- Javascripts 
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <h:outputScript library="js" name="ibarcode.js" />
+    <ui:insert name="footer"/>
+
+    <p:growl id="globalMessages" showDetail="true"/>
+
+</h:body>
+</f:view>
+</html>

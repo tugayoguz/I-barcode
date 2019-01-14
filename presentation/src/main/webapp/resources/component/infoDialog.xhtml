@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:dmis="http://java.sun.com/jsf/composite/component"
+>
+
+<composite:interface>
+
+    <composite:attribute name="bilgiLabelText" required="true" type="java.lang.String"/>
+    <composite:attribute name="value" required="true"/>
+    <composite:attribute name="compId"  required="true" type="java.lang.String"/>
+    <composite:attribute name="hideAction" />
+</composite:interface>
+
+<composite:implementation>
+
+    <h:form>
+        <p:dialog>
+            <h:outputText value="#{cc.attrs.bilgiLabelText}" />
+
+            <p:commandButton value="Tamam" action="#{cc.attrs.hideAction}"/>
+        </p:dialog>
+    </h:form>
+
+</composite:implementation>
+
+</html>

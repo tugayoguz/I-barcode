@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view locale="tr_TR">
+	<h:body>
+		<h:form id="frmNavbar">
+			<!-- BEGIN MAIN HEADER NAV -->
+			
+			<nav class="navbar navbar-default rs-navbar navbar-static-top">
+				<div class="container-fluid">
+
+					<div class="navbar-header has-right-divider">
+
+						<!-- <div class="rs-logo fixed-width">
+                Main Image logo 
+                <a class="navbar-brand" href="#">
+                    <h:graphicImage alt="DMIS Logo" library="images" name="dmis.png" />
+                </a>-->
+
+
+						<!-- Begin button to toggle sidebar -->
+						<button type="button"
+							class="navbar-toggle collapsed sidebar-toggle"
+							id="rs-sidebar-toggle-mobile">
+							<span class="icon-bar" /> <span class="icon-bar" /> <span
+								class="icon-bar" />
+						</button>
+						<!-- End button to toggle sidebar -->
+
+						<!-- Begin button to toggle navbar element -->
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#roosa-nav-collapse"
+							aria-expanded="false">
+							<span class="gcon gcon-dots-three-vertical f-s-sm" />
+						</button>
+						<!-- End button to toggle navbar element -->
+
+					</div>
+					<!-- /.navbar-header -->
+					<!-- End Navbar header -->
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="roosa-nav-collapse">
+
+						<div class="navbar-left">
+							<ui:insert name="navbar-left" />
+						</div>
+						<!-- /.navbar-left -->
+
+						<div class="navbar-right">
+
+							<ui:insert name="navbar-right-before" />
+
+							<ul class="nav navbar-nav">
+
+								<li class="navbar-icon dropdown"><a
+									href="javascript:void(0);" class="dropdown-toggle"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> <span
+										class="circle-notification bg-danger badge-notification" /> <i
+										class="gcon gcon-bell" /> <span
+										class="visible-xs-inline-block text-menu">Bildirimler</span>
+								</a>
+									<ul class="dropdown-menu xl-dropdown p-b-0 p-t-0">
+										<li
+											class="dropdown-header text-uppercase has-divider hidden-xs">
+											Bildirimler <span class="label label-success m-l">1
+												yeni</span>
+										</li>
+										<li>
+											<ul
+												class="rs-inner-dropdown has-divider media-menu scroll-dropdown rs-scroll-custom">
+												<li class="new"><a href="javascript:void(0);"> <span
+														class="media img-circle bg-primary">SH</span> <span
+														class="id">Sistem</span> Mesaj içeriği <span
+														class="time small">30 dakika önce</span>
+												</a></li>
+											</ul>
+										</li>
+										<li class="text-center bottom-button"><a
+											href="javascript:void(0);">Tüm Bildirimleri Görüntüle</a></li>
+									</ul></li>
+								<li class="navbar-icon"><a href="javascript:void(0);">
+										<i class="gcon gcon-lifebuoy" /> <span
+										class="visible-xs-inline-block text-menu">Yardım ve
+											Destek</span>
+								</a></li>
+							</ul>
+
+							<ul class="nav navbar-nav">
+								<!-- Begin user menu -->
+								<li class="navbar-icon dropdown"><a
+									href="javascript:void(0);" class="dropdown-toggle"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> <span
+										class="circle-notification badge-notification bg-success" />
+										<i class="gcon gcon-user" /> <span
+										class="visible-xs-inline-block m-l">Merhaba, <strong>#Kullanıcı
+												Adı</strong></span>
+								</a> <!-- Dropdown -->
+									<ul class="dropdown-menu lg-dropdown">
+										<li class="inherit-bg"><a href="javascript:void(0);">
+												<span class="f-s-xs f-w-500">#Kullanıcı Adı</span><br /> <small
+												class="text-muted">#Kullanıcı Rolü</small>
+										</a></li>
+										<li role="separator" class="divider" />
+										<li class="dropdown-header text-uppercase">Ayarlar</li>
+										<li class="menu-icon"><a href="javascript:void(0);"><span
+												class="gcon gcon-address rs-dropdown-icon" />Rol Değiştir</a></li>
+										<li class="menu-icon"><a href="javascript:void(0);"><span
+												class="gcon gcon-warning rs-dropdown-icon" />Sorun İletme</a></li>
+										<li class="menu-icon"><a href="javascript:void(0);"><span
+												class="gcon gcon-lifebuoy rs-dropdown-icon" />Yardım</a></li>
+										<li class="menu-icon"><h:commandLink id="cmdLogout"
+												action="#{loginManagedBean.doLogout}" process="@form"
+												update="@form growl">
+												<span class="gcon gcon-log-out rs-dropdown-icon" />
+                                    Güvenli Çıkış
+                                </h:commandLink></li>
+									</ul> <!-- End dropdown --></li>
+								<!-- End user menu -->
+							</ul>
+
+							<ui:insert name="navbar-right-after" />
+
+						</div>
+						<!-- /.navbar-right -->
+						<!-- End navbar right content -->
+
+					</div>
+					<!-- /.collapse navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+			<!-- END MAIN HEADER NAV -->
+		</h:form>
+	</h:body>
+</f:view>
+</html>

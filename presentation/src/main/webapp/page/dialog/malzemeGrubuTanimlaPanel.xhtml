@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:dmis="http://java.sun.com/jsf/composite/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<b:panel id="editPanel" rendered="#{malzemeGrubuManagedBean.editPanel}"
+		title="Malzeme Grubu Tanimla">
+		<b:panelGrid columns="2" colSpans="6,6">
+			<b:panel>
+				<dmis:inputText value="#{malzemeGrubuManagedBean.malzemeGrubu.adi}"
+					labelId="adiLabelId" compId="adiId" labelText="Malzeme Grubu Adı"
+					requiredCond="true" compImmediate="false" />
+
+			</b:panel>
+			<b:panel>
+				<dmis:inputText value="#{malzemeGrubuManagedBean.malzemeGrubu.kodu}"
+					labelId="koduLabelId" compId="koduId"
+					labelText="Malzeme Grubu Kodu" requiredCond="true"
+					compImmediate="false" />
+			</b:panel>
+		</b:panelGrid>
+		<b:panel style="text-align:center;">
+			<p:commandButton value="Kaydet" style="background: green;color: white;"
+				action="#{malzemeGrubuManagedBean.kaydet}" update="malzemeGrubuForm" />
+			<p:commandButton value="İptal"
+				action="#{malzemeGrubuManagedBean.iptal}" update="malzemeGrubuForm" style="background: red;color: white;"
+				immediate="true" />
+
+		</b:panel>
+	</b:panel>
+</ui:composition>

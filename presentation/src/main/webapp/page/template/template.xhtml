@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta content='text/html; charset=UTF-8' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<ui:insert name="head" />
+	<h:outputStylesheet library="css" name="icon-fonts.css" />
+	<h:outputStylesheet library="css" name="ibarcode.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+</h:head>
+
+<f:view locale="tr_TR">
+	<h:body>
+
+		<b:panelGrid columns="2" columnClasses="col-md-2,col-md-10">
+			<b:panel>
+				<h2>Menü</h2>
+				<p:tieredMenu style="border: 0px !important;">
+					<p:submenu label="Bütçe" icon="ui-icon-document">
+						<p:submenu label="New" icon="ui-icon-contact">
+							<p:menuitem value="Project" url="#" />
+							<p:menuitem value="Other" url="#" />
+						</p:submenu>
+						<p:menuitem value="Open" url="#" />
+						<p:separator />
+						<p:menuitem value="Quit" url="#" />
+					</p:submenu>
+
+					<p:submenu label="Harcama" icon="ui-icon-document">
+						<p:submenu label="New" icon="ui-icon-contact">
+							<p:menuitem value="Project" url="#" />
+							<p:menuitem value="Other" url="#" />
+						</p:submenu>
+						<p:menuitem value="Open" url="#" />
+						<p:separator />
+						<p:menuitem value="Quit" url="#" />
+					</p:submenu>
+
+					<p:submenu label="Malzeme" icon="ui-icon-document">
+						<p:submenu label="Tanımlamalar" icon="ui-icon-contact">
+							<p:menuitem value="Malzeme Grubu Tanimla"
+								url="/page/view/malzemeGrubuTanimla.xhtml" />
+							<p:menuitem value="Malzeme Tanimla"
+								url="/page/view/malzemeTanimlama.xhtml" />
+							<p:menuitem value="Ürün" url="#" />
+						</p:submenu>
+					</p:submenu>
+
+					<p:submenu label="Personel" icon="ui-icon-document">
+						<p:submenu label="New" icon="ui-icon-contact">
+							<p:menuitem value="Project" url="#" />
+							<p:menuitem value="Other" url="#" />
+						</p:submenu>
+						<p:menuitem value="Open" url="#" />
+						<p:separator />
+						<p:menuitem value="Quit" url="#" />
+					</p:submenu>
+
+					<p:submenu label="Gelir" icon="ui-icon-document">
+						<p:submenu label="New" icon="ui-icon-contact">
+							<p:menuitem value="Project" url="#" />
+							<p:menuitem value="Other" url="#" />
+						</p:submenu>
+						<p:menuitem value="Open" url="#" />
+						<p:separator />
+						<p:menuitem value="Quit" url="#" />
+					</p:submenu>
+
+					<p:submenu label="Muhasebe" icon="ui-icon-document">
+						<p:menuitem value="Fiş İşlemleri" url="/page/muhasebe/fis.xhtml" />
+						<p:submenu label="Banka" icon="ui-icon-contact">
+							<p:menuitem value="Banka Gönderme" url="#" />
+							<p:menuitem value="Banka Kapatma" url="#" />
+						</p:submenu>
+						<p:separator />
+						<p:submenu label="Tanımlamalar" icon="ui-icon-contact">
+							<p:menuitem value="Project" url="#" />
+							<p:menuitem value="Other" url="#" />
+						</p:submenu>
+					</p:submenu>
+
+					<p:submenu label="Yönetim" icon="ui-icon-document">
+						<p:submenu label="Ekonomik Kod">
+							<p:menuitem value="Gelir" url="/page/butce/ekonomikKod.xhtml" />
+							<p:menuitem value="Gider" url="/page/butce/ekonomikKod.xhtml" />
+						</p:submenu>
+						<p:menuitem value="Fonksiyonel Kod" url="#" />
+					</p:submenu>
+
+
+				</p:tieredMenu>
+
+			</b:panel>
+			<b:panel>
+				<ui:insert name="footer" />
+				<p:spacer height="15px" />
+
+				<p:breadCrumb>
+					<p:menuitem value="Home" url="/index.xhtml" />
+				</p:breadCrumb>
+				<b:panel style="width: 100%;">
+					<ui:insert name="content" />
+				</b:panel>
+
+			</b:panel>
+
+		</b:panelGrid>
+
+	</h:body>
+</f:view>
+
+</html>
